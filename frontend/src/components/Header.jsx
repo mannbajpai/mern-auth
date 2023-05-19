@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useLogoutMutation } from '../slices/usersApiSlice';
 import {logout} from '../slices/authSlice'
+import { toast } from 'react-toastify';
 
 
 const Header = () => {
@@ -20,7 +21,7 @@ const Header = () => {
             dispatch(logout());
             navigate('/login');
         } catch (err) {
-            console.error(err);
+            toast.error(err?.data?.message || err.error);
         }
     }
     return (
